@@ -32,33 +32,8 @@ class GreenTest extends TestCase
         $request->setContent(json_encode(array("tasks" => array($task1), "scenes" => array("antispam"))));
 
         # run request
-        try {
-            $response = $client->getAcsResponse($request);
-
-//            print_r($response);
-//            if (200 == $response->code) {
-//                $taskResults = $response->data;
-//                foreach ($taskResults as $taskResult) {
-//                    if (200 == $taskResult->code) {
-//                        $sceneResults = $taskResult->results;
-//                        foreach ($sceneResults as $sceneResult) {
-//                            $scene = $sceneResult->scene;
-//                            $suggestion = $sceneResult->suggestion;
-//                            //根据scene和suggetion做相关处理
-//                            //do something
-//                            print_r($scene);
-//                            print_r($suggestion);
-//                        }
-//                    } else {
-//                        print_r("task process fail:" + $response->code);
-//                    }
-//                }
-//            } else {
-//                print_r("detect not success. code:" + $response->code);
-//            }
-        } catch (Exception $e) {
-            print_r($e);
-        }
+        $response = $client->getAcsResponse($request);
+        $this->assertEquals(200, $response->code);
     }
 
 
